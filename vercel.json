@@ -1,26 +1,26 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
   "functions": {
     "api/**/*.js": {
-      "maxDuration": 30,
-      "memory": 1024
+      "runtime": "nodejs22.x",
+      "maxDuration": 30
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/index.js"
-    }
-  ],
-  "headers": [
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
     {
-      "source": "/(css|js)/:path*",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "s-maxage=31536000, immutable"
-        }
-      ]
+      "src": "/(css|js)/(.*)",
+      "headers": {
+        "cache-control": "s-maxage=31536000, immutable"
+      },
+      "continue": true
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
     }
   ],
   "outputDirectory": "public"
