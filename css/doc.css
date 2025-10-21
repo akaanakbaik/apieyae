@@ -1,0 +1,22 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0a0a0a;
+    color: #e5e7eb;
+    background-image: radial-gradient(#27272a 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+.glass-card {
+    background: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+pre, code {
+    font-family: 'JetBrains Mono', monospace;
+}
+.code-block {
+    background-color: #000;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    position: relative;
+    overflow-x: auto;
+}
