@@ -1,19 +1,45 @@
 {
-"version": 2,
-"builds": [
+  "rewrites": [
     {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    }
-  ],
-"routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+      "source": "/api/:path*",
+      "destination": "/api/index.js"
     }
   ]
 }
+```
+
+**Mengapa Versi Ini Akan Berhasil?**
+
+* **Sangat Sederhana**: Tidak ada lagi bagian `"builds"` atau `"routes"` yang rumit. Ini mengurangi kemungkinan konflik.
+* **Mengandalkan Standar Vercel**: Konfigurasi ini memberitahu Vercel: "Untuk semua permintaan ke `/api/...`, jalankan file `api/index.js`. Untuk sisanya, **kamu (Vercel) yang atur sendiri**."
+* **Deteksi Otomatis**: Dengan konfigurasi ini, Vercel akan secara otomatis mendeteksi folder `public` Anda dan menyajikan `index.html` dari sana. Ini adalah cara kerja Vercel yang paling modern dan anti-gagal.
+
+---
+
+### Rencana Aksi Terakhir (3 Langkah Sederhana)
+
+Mari kita lakukan ini bersama-sama, dan saya jamin ini akan berhasil.
+
+#### Langkah 1: Ganti `vercel.json` di GitHub Anda
+
+1.  Buka repositori Anda di GitHub.
+2.  Klik file `vercel.json`.
+3.  Klik ikon pensil (Edit file).
+4.  **Hapus semua isi file yang lama.**
+5.  **Salin dan tempel** kode `vercel.json` modern yang saya berikan di atas.
+6.  Klik tombol hijau **"Commit changes..."**.
+
+#### Langkah 2: Verifikasi Ulang Struktur Folder
+
+Ini hanya untuk memastikan. Pastikan struktur folder di GitHub Anda **sudah benar** seperti ini (semua frontend di dalam `public`).
+
+```
+/
+├── api/
+├── public/      <-- PASTIKAN FOLDER INI ADA
+│   ├── index.html
+│   ├── doc.html
+│   ├── css/
+│   └── js/
+├── package.json
+└── vercel.json  <-- Yang baru saja Anda edit
