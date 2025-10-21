@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api's AI by aka</title>
+    <meta name="description" content="Antarmuka web sederhana untuk berinteraksi dengan REST API AI. Dibuat oleh aka.">
+    <meta name="keywords" content="AI, API, aka, Node.js, Artificial Intelligence, REST API">
+    <meta name="author" content="aka">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 lg:p-8">
+
+    <div id="notification-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-sm"></div>
+
+    <main class="w-full max-w-2xl mx-auto flex flex-col items-center flex-grow">
+        <!-- Header -->
+        <header class="text-center my-8 w-full relative">
+            <h1 class="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">
+                Api's AI
+            </h1>
+            <p class="text-gray-400 mt-2">by aka</p>
+             <a href="/doc" class="absolute top-0 right-0 text-sm bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 font-medium py-1.5 px-4 rounded-lg transition duration-300">
+                Docs
+            </a>
+        </header>
+
+        <!-- Main Interaction Card -->
+        <div class="glass-card w-full p-6 sm:p-8 rounded-2xl shadow-2xl shadow-black/30">
+            <div>
+                <label class="block mb-2">
+                    <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-md text-xs font-semibold">Nama: AI</span>
+                </label>
+                <textarea 
+                    id="query-input" 
+                    rows="4" 
+                    class="block p-3.5 w-full text-sm text-gray-200 bg-gray-900/50 rounded-lg border border-gray-600 focus:ring-blue-500 focus:border-blue-500 transition duration-300" 
+                    placeholder="Ketik permintaan Anda di sini... contoh: Apa itu Node.js?"></textarea>
+            </div>
+            
+            <div id="custom-box" class="mt-6 p-4 border border-gray-700 rounded-lg bg-gray-900/30">
+                <h3 class="text-lg font-semibold text-gray-200 mb-4">Custom</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label for="custom-model-input" class="block mb-2 text-sm font-medium text-gray-300">Buat Model Anda (Sifat/Karakter)</label>
+                        <input 
+                            type="text" 
+                            id="custom-model-input" 
+                            class="bg-gray-800/60 border border-gray-600 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
+                            placeholder="Contoh: anda adalah Upin dengan sifat kanak-kanak">
+                    </div>
+                    <div>
+                        <label for="language-select" class="block mb-2 text-sm font-medium text-gray-300">Pilih Bahasa Output AI</label>
+                        <select id="language-select" class="bg-gray-800/60 border border-gray-600 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="Indonesia" selected>Indonesia</option>
+                            <option value="English">English</option>
+                            <option value="Melayu">Melayu (Malaysia)</option>
+                            <option value="العربية">العربية (Arab)</option>
+                            <option value="中文">中文 (Tionghoa)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-4 mt-6">
+                <button id="clear-btn" class="px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-900 transition duration-300">
+                    Clear
+                </button>
+                <button id="exec-btn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 transition duration-300 flex items-center justify-center min-w-[80px]">
+                    Exec
+                </button>
+            </div>
+        </div>
+
+        <div id="result-container" class="w-full mt-8 hidden">
+            <!-- Content will be injected by script -->
+        </div>
+        
+        <div class="glass-card w-full max-w-sm p-6 rounded-2xl shadow-2xl shadow-black/30 mt-12 text-center">
+            <h3 class="text-xl font-bold text-white">Kontak Saya</h3>
+            <p class="mt-2 text-gray-400">Lihat proyek lainnya di portofolio saya.</p>
+            <a href="https://akadev.my.id" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block bg-teal-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-teal-600 transition duration-300">
+                My Portofolio
+            </a>
+        </div>
+    </main>
+
+    <footer class="w-full text-center text-gray-500 text-sm py-6">
+        <p>made with ❤️ and code by aka</p>
+    </footer>
+
+    <script src="/js/notif.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+          </html>
