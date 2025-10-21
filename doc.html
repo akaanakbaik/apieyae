@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Api's AI</title>
+    <meta name="description" content="Dokumentasi resmi untuk Api's AI oleh aka.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/doc.css">
+</head>
+<body class="min-h-screen flex flex-col items-center p-4 sm:p-6 lg:p-8">
+
+    <div id="notification-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-sm"></div>
+
+    <main class="w-full max-w-4xl mx-auto">
+        <!-- Header Diperbaiki -->
+        <header class="my-8 w-full flex justify-between items-center gap-4">
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">
+                Dokumentasi Api's AI
+            </h1>
+            <a href="/" class="flex-shrink-0 text-sm bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 font-medium py-1.5 px-4 rounded-lg transition duration-300">
+                Home
+            </a>
+        </header>
+
+        <div class="space-y-8">
+            <div class="glass-card p-6 sm:p-8 rounded-2xl">
+                <h2 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2">Endpoint API</h2>
+                <p class="text-gray-400 mb-4">Endpoint utama untuk berinteraksi dengan AI.</p>
+                <ul class="space-y-2 text-gray-300">
+                    <li><strong>URL:</strong> <code id="api-url-path" class="bg-gray-800 text-teal-300 px-2 py-1 rounded">/api/chat</code></li>
+                    <li><strong>Method:</strong> <code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">POST</code></li>
+                    <li><strong>Content-Type:</strong> <code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">application/json</code></li>
+                </ul>
+            </div>
+
+            <div class="glass-card p-6 sm:p-8 rounded-2xl">
+                <h2 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2">Body Request</h2>
+                <div class="code-block">
+                    <button class="copy-code-btn absolute top-3 right-3 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 font-medium py-1 px-3 rounded-md transition">Copy</button>
+                    <pre><code class="text-sm text-gray-300">{
+  "query": "Apa itu JavaScript?",
+  "customPrompt": "Jelaskan dengan gaya seorang bajak laut",
+  "language": "Indonesia",
+  "model": "default"
+}</code></pre>
+                </div>
+                <ul class="mt-4 space-y-2 text-gray-300">
+                    <li><code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">query</code> (wajib): Teks pertanyaan Anda.</li>
+                    <li><code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">customPrompt</code> (opsional): Sifat/karakter untuk AI.</li>
+                    <li><code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">language</code> (opsional): Bahasa output yang diinginkan.</li>
+                    <li><code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">model</code> (opsional): Pilihan model (`default`, `think-deeper`, `gpt-5`).</li>
+                </ul>
+            </div>
+
+            <div class="glass-card p-6 sm:p-8 rounded-2xl">
+                <h2 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2">Contoh cURL</h2>
+                <div class="code-block">
+                    <button class="copy-code-btn absolute top-3 right-3 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 font-medium py-1 px-3 rounded-md transition">Copy</button>
+                    <pre><code id="doc-curl-example" class="text-sm text-yellow-300 whitespace-pre-wrap break-words"></code></pre>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 sm:p-8 rounded-2xl">
+                <h2 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2">Contoh Plugin Bot WA (ESM)</h2>
+                <div class="code-block">
+                     <button class="copy-code-btn absolute top-3 right-3 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 font-medium py-1 px-3 rounded-md transition">Copy</button>
+                    <pre><code id="wa-bot-plugin-code" class="text-sm text-gray-300 whitespace-pre-wrap break-words"></code></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full text-center text-gray-500 text-sm py-6 mt-8">
+        <p>made with ❤️ and code by aka</p>
+    </footer>
+    
+    <script src="/js/notif.js"></script>
+    <script src="/js/doc.js"></script>
+</body>
+                                                </html>
