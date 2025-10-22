@@ -3,100 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Api's AI by aka</title>
-    <meta name="description" content="Antarmuka web sederhana untuk berinteraksi dengan REST API AI. Dibuat oleh aka.">
-    <meta name="keywords" content="AI, API, aka, Node.js, Artificial Intelligence, REST API">
-    <meta name="author" content="aka">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/index.css">
+    <title>Api's AI - by aka</title>
+    <meta name="description" content="Simple AI REST API service by aka. Cepat, gratis, dan mudah digunakan.">
+    <meta name="keywords" content="AI, API, REST API, aka, AI Gratis, Copilot API, GPT-4o">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 lg:p-8">
+<body>
+    <div id="notification-container"></div>
+    <header>
+        <div class="header-content">
+            <h1>Api's AI <span class="by-aka">by aka</span></h1>
+            <a href="/doc" class="btn btn-docs">Docs</a>
+        </div>
+    </header>
 
-    <div id="notification-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-sm"></div>
+    <main>
+        <div class="card">
+            <form id="ai-form">
+                <div class="form-group">
+                    <label for="custom-prompt">Custom</label>
+                    <input type="text" id="custom-prompt" placeholder="Contoh: anda adalah Upin dengar">
+                </div>
 
-    <main class="w-full max-w-2xl mx-auto flex flex-col items-center flex-grow">
-        <!-- Header -->
-        <header class="text-center my-8 w-full relative">
-            <h1 class="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">
-                Api's AI
-            </h1>
-            <p class="text-gray-400 mt-2">by aka</p>
-             <a href="/doc" class="absolute top-0 right-0 text-sm bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 font-medium py-1.5 px-4 rounded-lg transition duration-300">
-                Docs
-            </a>
-        </header>
+                <div class="form-group">
+                    <label for="language">Pilih Bahasa Output AI</label>
+                    <select id="language">
+                        <option value="Indonesia" selected>Indonesia</option>
+                        <option value="English">English</option>
+                        <option value="Melayu">Melayu (Malaysia)</option>
+                        <option value="Arab">Arab</option>
+                        <option value="Tionghoa">Tionghoa (Mandarin)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                     <label for="query">Query</label>
+                    <textarea id="query" rows="5" placeholder="halo AI"></textarea>
+                </div>
 
-        <!-- Main Interaction Card -->
-        <div class="glass-card w-full p-6 sm:p-8 rounded-2xl shadow-2xl shadow-black/30">
-            <div>
-                <label class="block mb-2">
-                    <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-md text-xs font-semibold">Nama: AI</span>
-                </label>
-                <textarea 
-                    id="query-input" 
-                    rows="4" 
-                    class="block p-3.5 w-full text-sm text-gray-200 bg-gray-900/50 rounded-lg border border-gray-600 focus:ring-blue-500 focus:border-blue-500 transition duration-300" 
-                    placeholder="Ketik permintaan Anda di sini... contoh: Apa itu Node.js?"></textarea>
-            </div>
-            
-            <div id="custom-box" class="mt-6 p-4 border border-gray-700 rounded-lg bg-gray-900/30">
-                <h3 class="text-lg font-semibold text-gray-200 mb-4">Custom</h3>
-                <div class="space-y-4">
-                    <div>
-                        <label for="custom-model-input" class="block mb-2 text-sm font-medium text-gray-300">Buat Model Anda (Sifat/Karakter)</label>
-                        <input 
-                            type="text" 
-                            id="custom-model-input" 
-                            class="bg-gray-800/60 border border-gray-600 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
-                            placeholder="Contoh: anda adalah Upin dengan sifat kanak-kanak">
-                    </div>
-                    <div>
-                        <label for="language-select" class="block mb-2 text-sm font-medium text-gray-300">Pilih Bahasa Output AI</label>
-                        <select id="language-select" class="bg-gray-800/60 border border-gray-600 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value="Indonesia" selected>Indonesia</option>
-                            <option value="English">English</option>
-                            <option value="Melayu">Melayu (Malaysia)</option>
-                            <option value="العربية">العربية (Arab)</option>
-                            <option value="中文">中文 (Tionghoa)</option>
-                        </select>
-                    </div>
+                <div class="button-group">
+                    <button type="button" id="clear-btn" class="btn btn-clear">Clear</button>
+                    <button type="submit" id="exec-btn" class="btn btn-exec">Exec</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="output-container" class="card hidden">
+            <div class="output-section">
+                <label>Hasil Exec (Log)</label>
+                <div class="code-block-wrapper">
+                    <pre><code id="log-output"></code></pre>
+                    <button class="copy-btn" data-clipboard-target="#log-output" title="Salin Log">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 0H5.5A1.5 1.5 0 0 0 4 1.5v2h-1A1.5 1.5 0 0 0 1.5 5v9.5A1.5 1.5 0 0 0 3 16h8.5a1.5 1.5 0 0 0 1.5-1.5V5h1a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 13.5 0zM3 14.5V5h1.5a.5.5 0 0 1 .5.5V15H3.5A.5.5 0 0 1 3 14.5zM13 14.5a.5.5 0 0 1-.5.5h-7V5.5a1.5 1.5 0 0 0-1.5-1.5H5.5A.5.5 0 0 1 5 3.5v-2A.5.5 0 0 1 5.5 1h8a.5.5 0 0 1 .5.5V3.5h-1A1.5 1.5 0 0 0 11.5 5V14.5h.5a.5.5 0 0 1 .5.5z"/></svg>
+                    </button>
                 </div>
             </div>
-
-            <div class="flex items-center justify-end gap-4 mt-6">
-                <button id="clear-btn" class="px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-900 transition duration-300">
-                    Clear
-                </button>
-                <button id="exec-btn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 transition duration-300 flex items-center justify-center min-w-[80px]">
-                    Exec
-                </button>
+            
+            <div class="output-section">
+                <label>Example cURL</label>
+                <div class="code-block-wrapper">
+                    <pre><code id="curl-output"></code></pre>
+                    <button class="copy-btn" data-clipboard-target="#curl-output" title="Salin cURL">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 0H5.5A1.5 1.5 0 0 0 4 1.5v2h-1A1.5 1.5 0 0 0 1.5 5v9.5A1.5 1.5 0 0 0 3 16h8.5a1.5 1.5 0 0 0 1.5-1.5V5h1a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 13.5 0zM3 14.5V5h1.5a.5.5 0 0 1 .5.5V15H3.5A.5.5 0 0 1 3 14.5zM13 14.5a.5.5 0 0 1-.5.5h-7V5.5a1.5 1.5 0 0 0-1.5-1.5H5.5A.5.5 0 0 1 5 3.5v-2A.5.5 0 0 1 5.5 1h8a.5.5 0 0 1 .5.5V3.5h-1A1.5 1.5 0 0 0 11.5 5V14.5h.5a.5.5 0 0 1 .5.5z"/></svg>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div id="result-container" class="w-full mt-8 hidden">
-            <!-- Content will be injected by script -->
-        </div>
-        
-        <div class="glass-card w-full max-w-sm p-6 rounded-2xl shadow-2xl shadow-black/30 mt-12 text-center">
-            <h3 class="text-xl font-bold text-white">Kontak Saya</h3>
-            <p class="mt-2 text-gray-400">Lihat proyek lainnya di portofolio saya.</p>
-            <a href="https://akadev.my.id" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block bg-teal-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-teal-600 transition duration-300">
-                My Portofolio
-            </a>
+        <div class="card contact-card">
+            <h2>Kontak Saya</h2>
+            <p>Lihat proyek lainnya di portofolio saya.</p>
+            <a href="https://akadev.my.id" target="_blank" rel="noopener noreferrer" class="btn btn-portfolio">My Portofolio</a>
         </div>
     </main>
 
-    <footer class="w-full text-center text-gray-500 text-sm py-6">
+    <footer>
         <p>made with ❤️ and code by aka</p>
     </footer>
 
-    <script src="/js/notif.js"></script>
+    <script src="/js/notifications.js"></script>
     <script src="/js/main.js"></script>
 </body>
-          </html>
+    </html>
