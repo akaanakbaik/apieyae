@@ -7,40 +7,20 @@
       "memory": 1024
     }
   },
-  "routes": [
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1.js" },
+    { "source": "/doc", "destination": "/public/doc.html" },
+    { "source": "/css/(.*)", "destination": "/public/css/$1" },
+    { "source": "/js/(.*)", "destination": "/public/js/$1" },
+    { "source": "/index.html", "destination": "/" },
+    { "source": "/", "destination": "/public/index.html" },
+    { "source": "/(.*)", "destination": "/public/$1" }
+  ],
+  "redirects": [
     {
-      "src": "^/api/(.*)$",
-      "dest": "/api/$1.js"
-    },
-    {
-      "src": "^/doc$",
-      "dest": "/public/doc.html"
-    },
-    {
-      "src": "^/css/(.*)$",
-      "dest": "/public/css/$1"
-    },
-    {
-      "src": "^/js/(.*)$",
-      "dest": "/public/js/$1"
-    },
-    {
-      "src": "^/index.html$",
-      "status": 308,
-      "headers": { "Location": "/" }
-    },
-    {
-      "src": "^/$",
-      "dest": "/public/index.html"
-    },
-    {
-      "src": "^(?!/api/)(.*)$",
-      "dest": "/public/$1"
-    },
-    {
-      "src": "/(.*)",
-      "status": 404,
-      "dest": "/public/404.html"
+      "source": "/index.html",
+      "destination": "/",
+      "statusCode": 308
     }
   ],
   "headers": [
@@ -54,5 +34,7 @@
       ]
     }
   ],
+  "cleanUrls": true,
+  "trailingSlash": false,
   "outputDirectory": "public"
 }
