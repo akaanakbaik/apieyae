@@ -1,27 +1,66 @@
 {
   "version": 2,
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs22.x",
-      "maxDuration": 30
-    }
-  },
-  "routes": [
+  "builds": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/index.js"
+      "src": "/public/index.html",
+      "use": "@vercel/static"
     },
     {
-      "src": "/(css|js)/(.*)",
-      "headers": {
-        "cache-control": "s-maxage=31536000, immutable"
-      },
-      "continue": true
+      "src": "/public/doc.html",
+      "use": "@vercel/static"
     },
     {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+      "src": "/public/css/style.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "/public/js/main.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "/public/js/doc.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "/public/js/notifications.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "/api/ai.js",
+      "use": "@vercel/node"
     }
   ],
-  "outputDirectory": "public"
+  "routes": [
+    {
+      "src": "/api/ai",
+      "dest": "/api/ai.js"
+    },
+    {
+      "src": "/doc",
+      "dest": "/public/doc.html"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/public/js/$1"
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/public/css/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/public/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
+      ]
+    }
+  ]
 }
