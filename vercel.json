@@ -1,31 +1,46 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/ai.js",
-      "use": "@vercel/node"
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs22.x",
+      "maxDuration": 30,
+      "memory": 1024
     }
-  ],
-  "rewrites": [
+  },
+  "routes": [
     {
-      "source": "/doc",
-      "destination": "/public/doc.html"
+      "src": "^/api/(.*)$",
+      "dest": "/api/$1.js"
     },
     {
-      "source": "/css/(.*)",
-      "destination": "/public/css/$1"
+      "src": "^/doc$",
+      "dest": "/public/doc.html"
     },
     {
-      "source": "/js/(.*)",
-      "destination": "/public/js/$1"
+      "src": "^/css/(.*)$",
+      "dest": "/public/css/$1"
     },
     {
-      "source": "/",
-      "destination": "/public/index.html"
+      "src": "^/js/(.*)$",
+      "dest": "/public/js/$1"
     },
     {
-      "source": "/(.*)",
-      "destination": "/public/$1"
+      "src": "^/index.html$",
+      "status": 308,
+      "headers": { "Location": "/" }
+    },
+    {
+      "src": "^/$",
+      "dest": "/public/index.html"
+    },
+    {
+      "src": "^(?!/api/)(.*)$",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "/public/404.html"
     }
   ],
   "headers": [
@@ -38,5 +53,6 @@
         { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
       ]
     }
-  ]
+  ],
+  "outputDirectory": "public"
 }
