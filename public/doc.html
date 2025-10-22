@@ -3,85 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokumentasi - Api's AI</title>
-    <meta name="description" content="Dokumentasi resmi untuk Api's AI oleh aka.">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/doc.css">
+    <title>Docs - Api's AI</title>
+    <meta name="description" content="Dokumentasi untuk Api's AI oleh aka.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
 </head>
-<body class="min-h-screen flex flex-col items-center p-4 sm:p-6 lg:p-8">
+<body>
+    <div id="notification-container"></div>
+    <header>
+        <div class="header-content">
+            <h1>Api's AI <span class="by-aka">by aka</span></h1>
+            <a href="/" class="btn btn-docs">Home</a>
+        </div>
+    </header>
 
-    <div id="notification-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-sm"></div>
+    <main>
+        <div class="card doc-card">
+            <h2>Dokumentasi API</h2>
+            <p>API ini menggunakan metode POST untuk menerima permintaan dan mengembalikan respons AI.</p>
 
-    <main class="w-full max-w-4xl mx-auto">
-        <!-- Header Diperbaiki -->
-        <header class="my-8 w-full flex justify-between items-center gap-4">
-            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">
-                Dokumentasi Api's AI
-            </h1>
-            <a href="/" class="flex-shrink-0 text-sm bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 font-medium py-1.5 px-4 rounded-lg transition duration-300">
-                Home
-            </a>
-        </header>
-
-        <div class="space-y-8">
-            <div class="glass-card p-6 sm:p-8 rounded-2xl">
-                <h2 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2">Endpoint API</h2>
-                <p class="text-gray-400 mb-4">Endpoint utama untuk berinteraksi dengan AI.</p>
-                <ul class="space-y-2 text-gray-300">
-                    <li><strong>URL:</strong> <code id="api-url-path" class="bg-gray-800 text-teal-300 px-2 py-1 rounded">/api/chat</code></li>
-                    <li><strong>Method:</strong> <code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">POST</code></li>
-                    <li><strong>Content-Type:</strong> <code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">application/json</code></li>
-                </ul>
+            <div class="doc-section">
+                <h3>Endpoint</h3>
+                <div class="code-block-wrapper">
+                    <pre><code id="doc-endpoint">POST /api/ai</code></pre>
+                    <button class="copy-btn" data-clipboard-target="#doc-endpoint" title="Salin Path">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 0H5.5A1.5 1.5 0 0 0 4 1.5v2h-1A1.5 1.5 0 0 0 1.5 5v9.5A1.5 1.5 0 0 0 3 16h8.5a1.5 1.5 0 0 0 1.5-1.5V5h1a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 13.5 0zM3 14.5V5h1.5a.5.5 0 0 1 .5.5V15H3.5A.5.5 0 0 1 3 14.5zM13 14.5a.5.5 0 0 1-.5.5h-7V5.5a1.5 1.5 0 0 0-1.5-1.5H5.5A.5.5 0 0 1 5 3.5v-2A.5.5 0 0 1 5.5 1h8a.5.5 0 0 1 .5.5V3.5h-1A1.5 1.5 0 0 0 11.5 5V14.5h.5a.5.5 0 0 1 .5.5z"/></svg>
+                    </button>
+                </div>
             </div>
 
-            <div class="glass-card p-6 sm:p-8 rounded-2xl">
-                <h2 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2">Body Request</h2>
-                <div class="code-block">
-                    <button class="copy-code-btn absolute top-3 right-3 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 font-medium py-1 px-3 rounded-md transition">Copy</button>
-                    <pre><code class="text-sm text-gray-300">{
-  "query": "Apa itu JavaScript?",
-  "customPrompt": "Jelaskan dengan gaya seorang bajak laut",
-  "language": "Indonesia",
-  "model": "default"
+            <div class="doc-section">
+                <h3>Contoh Request Body (JSON)</h3>
+                <div class="code-block-wrapper">
+                    <pre><code id="doc-body">{
+    "query": "Apa itu Node.js?",
+    "custom": "Anda adalah programmer senior",
+    "language": "Indonesia"
 }</code></pre>
-                </div>
-                <ul class="mt-4 space-y-2 text-gray-300">
-                    <li><code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">query</code> (wajib): Teks pertanyaan Anda.</li>
-                    <li><code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">customPrompt</code> (opsional): Sifat/karakter untuk AI.</li>
-                    <li><code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">language</code> (opsional): Bahasa output yang diinginkan.</li>
-                    <li><code class="bg-gray-800 text-teal-300 px-2 py-1 rounded">model</code> (opsional): Pilihan model (`default`, `think-deeper`, `gpt-5`).</li>
-                </ul>
-            </div>
-
-            <div class="glass-card p-6 sm:p-8 rounded-2xl">
-                <h2 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2">Contoh cURL</h2>
-                <div class="code-block">
-                    <button class="copy-code-btn absolute top-3 right-3 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 font-medium py-1 px-3 rounded-md transition">Copy</button>
-                    <pre><code id="doc-curl-example" class="text-sm text-yellow-300 whitespace-pre-wrap break-words"></code></pre>
+                    <button class="copy-btn" data-clipboard-target="#doc-body" title="Salin Body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 0H5.5A1.5 1.5 0 0 0 4 1.5v2h-1A1.5 1.5 0 0 0 1.5 5v9.5A1.5 1.5 0 0 0 3 16h8.5a1.5 1.5 0 0 0 1.5-1.5V5h1a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 13.5 0zM3 14.5V5h1.5a.5.5 0 0 1 .5.5V15H3.5A.5.5 0 0 1 3 14.5zM13 14.5a.5.5 0 0 1-.5.5h-7V5.5a1.5 1.5 0 0 0-1.5-1.5H5.5A.5.5 0 0 1 5 3.5v-2A.5.5 0 0 1 5.5 1h8a.5.5 0 0 1 .5.5V3.5h-1A1.5 1.5 0 0 0 11.5 5V14.5h.5a.5.5 0 0 1 .5.5z"/></svg>
+                    </button>
                 </div>
             </div>
 
-            <div class="glass-card p-6 sm:p-8 rounded-2xl">
-                <h2 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2">Contoh Plugin Bot WA (ESM)</h2>
-                <div class="code-block">
-                     <button class="copy-code-btn absolute top-3 right-3 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 font-medium py-1 px-3 rounded-md transition">Copy</button>
-                    <pre><code id="wa-bot-plugin-code" class="text-sm text-gray-300 whitespace-pre-wrap break-words"></code></pre>
+            <div class="doc-section">
+                <h3>Contoh cURL</h3>
+                <div class="code-block-wrapper">
+                    <pre><code id="doc-curl"></code></pre>
+                    <button class="copy-btn" data-clipboard-target="#doc-curl" title="Salin cURL">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 0H5.5A1.5 1.5 0 0 0 4 1.5v2h-1A1.5 1.5 0 0 0 1.5 5v9.5A1.5 1.5 0 0 0 3 16h8.5a1.5 1.5 0 0 0 1.5-1.5V5h1a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 13.5 0zM3 14.5V5h1.5a.5.5 0 0 1 .5.5V15H3.5A.5.5 0 0 1 3 14.5zM13 14.5a.5.5 0 0 1-.5.5h-7V5.5a1.5 1.5 0 0 0-1.5-1.5H5.5A.5.5 0 0 1 5 3.5v-2A.5.5 0 0 1 5.5 1h8a.5.5 0 0 1 .5.5V3.5h-1A1.5 1.5 0 0 0 11.5 5V14.5h.5a.5.5 0 0 1 .5.5z"/></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="doc-section">
+                <h3>Contoh Output Sukses</h3>
+                <div class="code-block-wrapper">
+                    <pre><code id="doc-output">{
+  "author": "aka",
+  "email": "akaanakbaik17@proton.me",
+  "status": 200,
+  "model": "Copilot (Default)",
+  "response_time": "1234ms",
+  "result": {
+    "response": "Node.js adalah lingkungan runtime JavaScript...",
+    "citations": []
+  }
+}</code></pre>
+                    <button class="copy-btn" data-clipboard-target="#doc-output" title="Salin Output">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 0H5.5A1.5 1.5 0 0 0 4 1.5v2h-1A1.5 1.5 0 0 0 1.5 5v9.5A1.5 1.5 0 0 0 3 16h8.5a1.5 1.5 0 0 0 1.5-1.5V5h1a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 13.5 0zM3 14.5V5h1.5a.5.5 0 0 1 .5.5V15H3.5A.5.5 0 0 1 3 14.5zM13 14.5a.5.5 0 0 1-.5.5h-7V5.5a1.5 1.5 0 0 0-1.5-1.5H5.5A.5.5 0 0 1 5 3.5v-2A.5.5 0 0 1 5.5 1h8a.5.5 0 0 1 .5.5V3.5h-1A1.5 1.5 0 0 0 11.5 5V14.5h.5a.5.5 0 0 1 .5.5z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="doc-section">
+                <h3>Contoh Plugin Bot WA (ESM)</h3>
+                <p>Simpan sebagai `plugin/ai.js` atau sejenisnya.</p>
+                <div class="code-block-wrapper">
+                    <pre><code id="doc-plugin">import axios from 'axios'
+
+// Sesuaikan URL API dengan domain Anda
+const API_URL = '${window.location.origin}/api/ai'
+
+const handler = async (m, { conn, text, usedPrefix, command }) => {
+    if (!text) throw `Contoh penggunaan:\n${usedPrefix}${command} Siapa presiden Indonesia?`
+
+    try {
+        await m.reply('Sedang memproses permintaan Anda...')
+
+        const payload = {
+            query: text,
+            custom: "Anda adalah asisten AI yang cerdas dan membantu.",
+            language: "Indonesia"
+        }
+
+        const { data } = await axios.post(API_URL, payload, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+
+        if (data.status === 200 && data.result && data.result.response) {
+            let responseText = data.result.response
+            let footer = `\n\nModel: ${data.model} | Waktu: ${data.response_time}`
+            await m.reply(responseText + footer)
+        } else {
+            throw new Error(data.error || 'Gagal mendapatkan respons dari AI.')
+        }
+
+    } catch (e) {
+        console.error(e)
+        await m.reply(`Terjadi error: ${e.message}`)
+    }
+}
+
+handler.help = ['ai [query]', 'ask [query]']
+handler.tags = ['tools', 'ai']
+handler.command = /^(ai|ask)$/i
+
+export default handler
+</code></pre>
+                    <button class="copy-btn" data-clipboard-target="#doc-plugin" title="Salin Plugin">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.5 0H5.5A1.5 1.5 0 0 0 4 1.5v2h-1A1.5 1.5 0 0 0 1.5 5v9.5A1.5 1.5 0 0 0 3 16h8.5a1.5 1.5 0 0 0 1.5-1.5V5h1a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 13.5 0zM3 14.5V5h1.5a.5.5 0 0 1 .5.5V15H3.5A.5.5 0 0 1 3 14.5zM13 14.5a.5.5 0 0 1-.5.5h-7V5.5a1.5 1.5 0 0 0-1.5-1.5H5.5A.5.5 0 0 1 5 3.5v-2A.5.5 0 0 1 5.5 1h8a.5.5 0 0 1 .5.5V3.5h-1A1.5 1.5 0 0 0 11.5 5V14.5h.5a.5.5 0 0 1 .5.5z"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="w-full text-center text-gray-500 text-sm py-6 mt-8">
+    <footer>
         <p>made with ❤️ and code by aka</p>
     </footer>
-    
-    <script src="/js/notif.js"></script>
+
+    <script src="/js/notifications.js"></script>
     <script src="/js/doc.js"></script>
 </body>
-                                                </html>
+                </html>
+    
