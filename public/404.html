@@ -3,71 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Halaman tidak ditemukan - Api's AI by aka" />
   <title>404 - Halaman Tidak Ditemukan</title>
+  <meta name="description" content="Halaman tidak ditemukan di Api's AI by aka." />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
     body {
-      background-color: #0d0d0d;
-      color: #f2f2f2;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    h1 {
-      font-size: 7rem;
-      color: #b23a3a;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      color: #aaa;
-      margin-bottom: 2rem;
-      max-width: 500px;
-    }
-
-    a {
-      display: inline-block;
-      background-color: #b23a3a;
+      background: #0d0d0d;
       color: #fff;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    a {
+      background: #b23a3a;
+      color: #fff;
+      padding: 10px 20px;
       text-decoration: none;
-      padding: 12px 26px;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.3s ease;
+      border-radius: 10px;
+      margin-top: 20px;
     }
-
     a:hover {
-      background-color: #ff4d4d;
-      transform: scale(1.05);
+      background: #ff4d4d;
     }
-
     footer {
-      position: absolute;
-      bottom: 15px;
-      color: #666;
+      margin-top: 40px;
       font-size: 0.9rem;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      color: #999;
     }
   </style>
 </head>
@@ -76,8 +40,15 @@
   <h2>Halaman Tidak Ditemukan</h2>
   <p>Ups... sepertinya halaman yang kamu cari tidak tersedia atau telah dipindahkan.</p>
   <a href="/">🏠 Kembali ke Beranda</a>
+
   <footer>
     made with ❤️ and code by <strong>aka</strong>
   </footer>
+
+  <!-- ✅ Vercel Analytics -->
+  <script type="module">
+    import { inject } from "https://esm.sh/@vercel/analytics";
+    inject();
+  </script>
 </body>
 </html>
