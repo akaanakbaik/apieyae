@@ -1,22 +1,21 @@
 {
-  "name": "api-ai-ak",
+  "name": "apis-ai-web",
   "version": "1.0.0",
-  "description": "Simple AI REST API by aka",
-  "main": "api/index.js",
+  "description": "API's AI by aka",
+  "main": "api/ai.js",
   "type": "module",
-  "scripts": {
-    "start": "node api/index.js"
-  },
-  "author": "aka",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^1.7.2",
-    "cors": "^2.8.5",
-    "express": "^4.19.2",
-    "uuid": "^9.0.1",
-    "ws": "^8.17.0"
-  },
   "engines": {
     "node": "22.x"
-  }
+  },
+  "scripts": {
+    "start": "node api/ai.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "form-data": "^4.0.0",
+    "uuid": "^10.0.0",
+    "ws": "^8.18.0"
+  },
+  "author": "aka",
+  "license": "ISC"
 }
